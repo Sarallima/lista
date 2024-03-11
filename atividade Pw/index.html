@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="conteiner">
+      <h1>Lista de Comidas:</h1>
+
+      <ul id="lista"></ul>
+      <input type="button" onclick="mostrar()" value="Gerar" />
+      <br />
+      <label
+        >Coloque o numero da comida que deseja mudar
+        <input type="text" id="User" name="Name"
+      /></label>
+      <p>
+        0=arroz<br />
+        1=bolo<br />
+        2=queijo<br />
+      </p>
+
+      <button type="button" onclick="transferir()">Mudar</button>
+
+      <h1>Lista de Comidas preferidas:</h1>
+
+      <ul id="lista2"></ul>
+
+      <label
+        >Coloque o numero da comida que deseja retornar<input
+          type="text"
+          id="mudar"
+          name="Name"
+      /></label>
+      <p>
+        0=arroz<br />
+        1=bolo<br />
+        2=queijo<br />
+      </p>
+
+      <button type="button" onclick="retornar()">Retornar</button>
+    </div>
+
+    <script>
+      let nomes = ["arroz", "bolo", "queijo"];
+      let lista = document.querySelector("#lista");
+      let lista2 = document.querySelector("#lista2");
+      var apaguei;
+
+      function mostrar() {
+        for (var i = 0; i < nomes.length; i++) {
+          let item = document.createElement("li");
+          item.appendChild(document.createTextNode(nomes[i]));
+          lista.appendChild(item);
+        }
+      }
+
+      function transferir() {
+        let x = document.getElementById("User").value;
+        let item = document.createElement("li");
+        item.appendChild(document.createTextNode(nomes[x]));
+        lista2.appendChild(item);
+        document.getElementById("lista").innerHTML = "";
+        apaguei = nomes.splice(x, 1);
+        mostrar();
+      }
+
+      function retornar() {
+        let x = document.getElementById("mudar").value;
+        let lista = document.querySelector("#lista");
+        document.getElementById("lista").innerHTML = "";
+        document.getElementById("lista2").innerHTML = "";
+        nomes.splice(x, 0, apaguei);
+
+        mostrar();
+      }
+    </script>
+  </body>
+</html>
